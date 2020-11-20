@@ -13,3 +13,12 @@
   - name: Remove dependencies that are no longer required
     apt:
       autoremove: yes
+
+  - name: Ensure that Nginx is installed
+    apt:
+      name: nginx
+
+  - name: Start Nginx
+    service:
+      name: nginx
+      state: started
