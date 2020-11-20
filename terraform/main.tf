@@ -124,6 +124,9 @@ resource "aws_instance" "web" {
       "sudo apt install -y software-properties-common",
       "sudo apt-add-repository --yes --update ppa:ansible/ansible",
       "sudo apt install -y ansible",
+      "git clone https://github.com/JacobBHartman/feoh.git",
+      "cd feoh",
+      "ansible-playbook -i ansible/hosts ansible/playbook_demo.yml",
     ]
   }
 }
