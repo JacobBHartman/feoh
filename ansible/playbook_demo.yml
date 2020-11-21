@@ -6,6 +6,61 @@
   become: true
 
   tasks:
+  - name: Update and upgrade apt packages
+    apt:
+      update_cache: yes
+      upgrade: yes
+      cache_valid_time: 86400
+
+  - name: Install dependencies for Docker
+    apt:
+      name: apt-transport-https
+
+  - name: Install dependencies for Docker
+    apt:
+      name: ca-certificates
+
+  - name: Install dependencies for Docker
+    apt:
+      name: curl
+
+  - name: Install dependencies for Docker
+    apt:
+      name: software-properties-common
+
+  - name: Add downloaded Docker GPG key
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+
+  - name: Verify fingerprint
+    command: apt-key fingerprint 0EBFCD88
+    register: fingerprint
+  - debug: var=fingerprint.stdout_lines
+
+  - name: Install Docker
+    apt_repository:
+      repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+      state: present
+      filename: Release
+
+  - name: Install Docker
+    apt:
+      update_cache: yes
+      name:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+
+  - name: Install docker-compose
+    get_url:
+      url: "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-{{ kernel.stdout }}-{{ machine.stdout }}"
+      dest: /usr/local/bin/docker-compose
+
+  - name: Ensure docker-compose is executable
+    file:
+      path: /usr/local/bin/docker-compose
+      mode: "+x"
+
   - name: Remove useless packages from the cache
     apt:
       autoclean: yes
@@ -14,11 +69,3 @@
     apt:
       autoremove: yes
 
-  - name: Ensure that Nginx is installed
-    apt:
-      name: nginx
-
-  - name: Start Nginx
-    service:
-      name: nginx
-      state: started
