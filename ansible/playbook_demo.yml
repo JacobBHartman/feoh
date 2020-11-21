@@ -113,6 +113,12 @@
       group: jenkins
       mode: '0644'
 
+  - name: Add Jenkins to Docker group
+    user:
+      name: jenkins
+      append: yes
+      group: docker
+
   - name: Start Jenkins
     service:
       name: jenkins
