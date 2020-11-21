@@ -80,13 +80,24 @@
       line: 'deb https://pkg.jenkins.io/debian-stable binary/'
       create: yes
 
-  - name: Install Jenkins and Java
+  - name: Separte update cache
     apt:
       update_cache: yes
+
+  - name: Install Java
+    apt:
       name:
-        # once Jenkins issue 64212 is released change 8 to 11
         - openjdk-8-jdk
+
+  - name: Install Jenkins
+    apt:
+      name:    
         - jenkins
+
+  - name: Start Jenkins
+    service:
+      name: jenkins
+      state: started
 
   - name: Remove useless packages from the cache
     apt:
