@@ -38,15 +38,15 @@
 
   - debug: var=fingerprint.stdout_lines
 
-  - name: Install Docker
-    apt_repository:
-      repo: deb https://download.docker.com/linux/ubuntu focal stable
-      state: present
-
   - name: Clean non-existent repository
     file:
       state: absent
       path: /etc/apt/sources.list.d/ansible-ubuntu-ansible-focal.list
+
+  - name: Install Docker
+    apt_repository:
+      repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+      state: present
 
   - name: Install Docker
     apt:
