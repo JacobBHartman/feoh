@@ -35,13 +35,18 @@
   - name: Verify fingerprint
     command: apt-key fingerprint 0EBFCD88
     register: fingerprint
+
   - debug: var=fingerprint.stdout_lines
 
   - name: Install Docker
     apt_repository:
-      repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+      repo: deb https://download.docker.com/linux/ubuntu focal stable
       state: present
-      filename: Release
+
+  - name: Clean non-existent repository
+    file:
+      state: absent
+      path: /etc/apt/sources.list.d/ansible-ubuntu-ansible-focal.list
 
   - name: Install Docker
     apt:
@@ -53,7 +58,7 @@
 
   - name: Install docker-compose
     get_url:
-      url: "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-{{ kernel.stdout }}-{{ machine.stdout }}"
+      url: "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-Linux-x86_64"
       dest: /usr/local/bin/docker-compose
 
   - name: Ensure docker-compose is executable
