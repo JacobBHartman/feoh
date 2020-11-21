@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  reverse-proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile_reverse-proxy
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
