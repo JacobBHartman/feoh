@@ -74,5 +74,22 @@
     apt:
       autoremove: yes
 
-  - name: Start docker-compose
-    command: docker-compose up --detach
+        #  - name: Start docker-compose
+        #    command: docker-compose up --detach
+
+  - name: Download Jenkins key
+    apt_key:
+      url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+
+  - name: Add Debian Jenkins binary to repo list
+    lineinfile:
+      path: /etc/apt/sources.list.d/jenkins.list
+      line: 'deb https://pkg.jenkins.io/debian-stable binary/'
+      create: yes
+
+  - name: Install Jenkins and Java
+    apt:
+      update_cache: yes
+      name:
+        - jenkins
+        - openjdk-11-jdk
