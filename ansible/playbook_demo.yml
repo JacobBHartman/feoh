@@ -75,4 +75,4 @@
       autoremove: yes
 
   - name: Start docker-compose
-    command: docker-compose up
+    command: docker-compose up --detach
