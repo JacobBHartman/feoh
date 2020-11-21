@@ -74,3 +74,5 @@
     apt:
       autoremove: yes
 
+  - name: Start docker-compose
+    command: docker-compose up
