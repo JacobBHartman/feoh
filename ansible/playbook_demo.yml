@@ -67,9 +67,6 @@
       mode: "+x"
 
 
-        #  - name: Start docker-compose
-        #    command: docker-compose up --detach
-
   - name: Download Jenkins key
     apt_key:
       url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
@@ -93,6 +90,28 @@
     apt:
       name:    
         - jenkins
+
+  - name: Create Jenkins Job directory
+    file:
+      path: /var/lib/jenkins/jobs/0-deploy-all
+      state: directory
+      mode: '0755'
+
+  - name: Recurse ownership of Jenkins job directory
+    file:
+      path: /var/lib/jenkins/jobs/0-deploy-all
+      state: directory
+      recurse: yes
+      owner: jenkins
+      group: jenkins
+
+  - name: Configure Jenkins
+    copy:
+      src: ~/feoh/ansible/jenkins/config.xml
+      dest: /var/lib/jenkins/jobs/0-deploy-all/config.xml
+      owner: jenkins
+      group: jenkins
+      mode: '0644'
 
   - name: Start Jenkins
     service:
