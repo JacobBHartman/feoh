@@ -91,5 +91,5 @@
     apt:
       update_cache: yes
       name:
-        - jenkins
         - openjdk-11-jdk
+        - jenkins
