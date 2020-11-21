@@ -122,7 +122,7 @@
   - name: Start Jenkins
     service:
       name: jenkins
-      state: started
+      state: restarted
 
   - name: Remove useless packages from the cache
     apt:
