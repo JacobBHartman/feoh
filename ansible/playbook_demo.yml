@@ -66,13 +66,6 @@
       path: /usr/local/bin/docker-compose
       mode: "+x"
 
-  - name: Remove useless packages from the cache
-    apt:
-      autoclean: yes
-
-  - name: Remove dependencies that are no longer required
-    apt:
-      autoremove: yes
 
         #  - name: Start docker-compose
         #    command: docker-compose up --detach
@@ -91,5 +84,14 @@
     apt:
       update_cache: yes
       name:
-        - openjdk-11-jdk
+        # once Jenkins issue 64212 is released change 8 to 11
+        - openjdk-8-jdk
         - jenkins
+
+  - name: Remove useless packages from the cache
+    apt:
+      autoclean: yes
+
+  - name: Remove dependencies that are no longer required
+    apt:
+      autoremove: yes
