@@ -9,3 +9,14 @@ services:
         published: 80
         protocol: tcp
         mode: host
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile_app
+    expose:
+      - "3000"
+#   ports:
+#     - "8001:3000"
+#   volumes:
+#     - .:/cadre:cached
