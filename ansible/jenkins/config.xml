@@ -5,7 +5,18 @@
 &#xd;
 This job will build Docker images and then run Docker compose to get them all up-and-running.</description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_USING_CACHE</name>
+          <description>true or false, do you  want to build the Docker images with the current Docker cache?</description>
+          <defaultValue>true</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
@@ -24,8 +35,12 @@ git clone https://github.com/JacobBHartman/feoh.git
 cd feoh
 
 # spin up containers
+if [ &quot;${BUILD_USING_CACHE}&quot; -eq &quot;true&quot; ]; then
+  docker-compose build
+elif [ &quot;${BUILD_USING_ACHE}&quot; -eq &quot;false&quot; ]; then
+  docker-compose build --no-cache
+fi
 docker-compose down
-docker-compose build --no-cache
 docker-compose up --detach</command>
       <configuredLocalRules/>
     </hudson.tasks.Shell>

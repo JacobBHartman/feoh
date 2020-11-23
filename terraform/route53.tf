@@ -10,3 +10,11 @@ resource "aws_route53_record" "domain" {
   ttl     = "300"
   records = [aws_instance.web.public_ip]
 }
+
+resource "aws_route53_record" "deploy" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = "deploy.bovine.biz"
+  type    = "A"
+  ttl     = "300"
+  records = [aws_instance.web.public_ip]
+}
