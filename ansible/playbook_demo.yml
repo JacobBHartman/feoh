@@ -99,7 +99,7 @@
 
   - name: Recurse ownership of Jenkins job directory
     file:
-      path: /var/lib/jenkins/jobs/0-deploy-all
+      path: /var/lib/jenkins/jobs
       state: directory
       recurse: yes
       owner: jenkins
