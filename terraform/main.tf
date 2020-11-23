@@ -114,7 +114,7 @@ resource "aws_instance" "web" {
     host = self.public_ip
   }
 
-  instance_type = "t2.micro"
+  instance_type = "t2.medium"
 
   ami = var.aws_amis[var.aws_region]
 

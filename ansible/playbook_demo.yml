@@ -117,7 +117,7 @@
     user:
       name: jenkins
       append: yes
-      group: docker
+      groups: docker
 
   - name: Start Jenkins
     service:
