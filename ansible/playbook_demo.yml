@@ -4,6 +4,8 @@
   hosts: demo
   connection: local
   become: true
+  environment:
+    JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
 
   tasks:
   - name: Update and upgrade apt packages
@@ -90,6 +92,20 @@
     apt:
       name:    
         - jenkins
+
+  - name: Copy file that lists Jenkins plugins
+    copy:
+      src: ~/feoh/ansible/jenkins/plugins.txt
+      dest: /tmp/plugins.txt
+
+  - name: Copy script that installs  Jenkins plugins
+    copy:
+      src: ~/feoh/ansible/jenkins/install-plugins.sh
+      dest: /tmp/install-plugins.sh
+      mode: u+x
+
+  - name: Run script that installs Jenkins plugins
+    script: /tmp/install-plugins.sh $(echo $(cat /tmp/plugins.txt))
 
   - name: Create Jenkins Job directory
     file:
