@@ -93,6 +93,11 @@
       name:    
         - jenkins
 
+  - name: Make sure Jenkins is started so we can grab cli
+    service:
+      name: jenkins
+      state: started
+
   - name: Install Jenkins CLI jar file
     get_url:
       url: "http://localhost:8080/jnlpJars/jenkins-cli.jar"
