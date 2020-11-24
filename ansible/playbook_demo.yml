@@ -93,6 +93,11 @@
       name:    
         - jenkins
 
+  - name: Install Jenkins CLI jar file
+    get_url:
+      url: "http://localhost:8080/jnlpJars/jenkins-cli.jar"
+      dest: /usr/local/bin/jenkins-cli.jar
+
   - name: Copy file that lists Jenkins plugins
     copy:
       src: ~/feoh/ansible/jenkins/plugins.txt
@@ -105,7 +110,7 @@
       mode: u+x
 
   - name: Run script that installs Jenkins plugins
-    script: /tmp/install-plugins.sh $(echo $(cat /tmp/plugins.txt))
+    script: /tmp/install-plugins.sh
 
   - name: Create Jenkins Job directory
     file:
