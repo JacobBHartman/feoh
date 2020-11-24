@@ -98,6 +98,11 @@
       name: jenkins
       state: started
 
+  - name: Wait for thiry seconds so that Jenkins has properly started
+    wait_for:
+      timeout: 30
+    delegate_to: localhost
+
   - name: Install Jenkins CLI jar file
     get_url:
       url: "http://localhost:8080/jnlpJars/jenkins-cli.jar"
