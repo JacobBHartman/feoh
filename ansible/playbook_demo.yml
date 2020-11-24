@@ -145,6 +145,9 @@
       name: jenkins
       state: restarted
 
+  - name: Start Jenkins build
+    command: java -jar /usr/local/bin/jenkins-cli.jar -s http://localhost:8080/ build 0-deploy-all
+
   - name: Remove useless packages from the cache
     apt:
       autoclean: yes
