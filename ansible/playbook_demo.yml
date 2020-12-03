@@ -111,7 +111,7 @@
 
   - name: Grab Jenkins admin password
     command: cat /var/lib/jenkins/secrets/initialAdminPassword
-    register: ADMIN_PASSWORD
+    register: admin_password
 
   - name: Install Jenkins CLI jar file
     get_url:
@@ -167,6 +167,8 @@
 
   - name: Start Jenkins build
     command: java -jar /usr/local/bin/jenkins-cli.jar -s http://localhost:8080/ --auth admin:$ADMIN_PASSWORD build 0-deploy-all
+    environment:
+      ADMIN_PASSWORD: '{{ admin_password }}'
 
   - name: Remove useless packages from the cache
     apt:
