@@ -36,11 +36,8 @@ services:
     depends_on:
       - db_blog
     image: wordpress:5.5.3-php7.2-fpm
-    ports:
-      - target: 80
-        published: 8000
-        protocol: tcp
-        mode: host
+    expose:
+      - "8000"
     restart: always
     environment:
       WORDPRESS_DB_HOST: db:3306
