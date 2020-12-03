@@ -166,7 +166,7 @@
       state: restarted
 
   - name: Start Jenkins build
-    command: java -jar /usr/local/bin/jenkins-cli.jar -s http://localhost:8080/ --auth admin:$ADMIN_PASSWORD build 0-deploy-all
+    command: java -jar /usr/local/bin/jenkins-cli.jar -s http://localhost:8080/ -auth admin:$ADMIN_PASSWORD build 0-deploy-all
     environment:
       ADMIN_PASSWORD: '{{ admin_password }}'
 
