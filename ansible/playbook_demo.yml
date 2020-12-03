@@ -93,6 +93,12 @@
       name:    
         - jenkins
 
+  - name: Add in Jenkins ARG that foregoes setup wizard
+    lineinfile:
+      path: /etc/default/jenkins
+      regex: '^JAVA_ARGS='
+      line: JAVA_ARGS="-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false"
+
   - name: Make sure Jenkins is started so we can grab cli
     service:
       name: jenkins
@@ -104,7 +110,7 @@
 
   - name: Wait for thiry seconds so that Jenkins has properly started
     wait_for:
-      timeout: 30
+      timeout: 60
     delegate_to: localhost
 
   - name: Install Jenkins CLI jar file
