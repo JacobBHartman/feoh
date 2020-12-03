@@ -34,7 +34,7 @@ services:
 
   blog:
     depends_on:
-      - db
+      - db_blog
     image: wordpress:5.5.3-php7.2-fpm
     ports:
       - target: 80
