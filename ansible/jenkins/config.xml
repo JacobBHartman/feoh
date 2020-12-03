@@ -35,9 +35,9 @@ git clone https://github.com/JacobBHartman/feoh.git
 cd feoh
 
 # spin up containers
-if [ &quot;${BUILD_USING_CACHE}&quot; -eq &quot;true&quot; ]; then
+if [ &quot;${BUILD_USING_CACHE}&quot; = &quot;true&quot; ]; then
   docker-compose build
-elif [ &quot;${BUILD_USING_ACHE}&quot; -eq &quot;false&quot; ]; then
+elif [ &quot;${BUILD_USING_CACHE}&quot; = &quot;false&quot; ]; then
   docker-compose build --no-cache
 fi
 docker-compose down
