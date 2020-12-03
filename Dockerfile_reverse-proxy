@@ -1,5 +1,6 @@
 FROM nginx:1.18.0-alpine
 
 COPY reverse-proxy/deploy.conf /etc/nginx/conf.d/deploy.conf
+COPY reverse-proxy/blog.conf /etc/nginx/conf.d/blog.conf
 
 COPY static/ /usr/share/nginx/html/
