@@ -165,10 +165,10 @@
       name: jenkins
       state: restarted
 
-  - name: Start Jenkins build
-    command: java -jar /usr/local/bin/jenkins-cli.jar -s http://localhost:8080/ -auth admin:$ADMIN_PASSWORD build 0-deploy-all
-    environment:
-      ADMIN_PASSWORD: '{{ admin_password }}'
+        #- name: Start Jenkins build
+        #command: java -jar /usr/local/bin/jenkins-cli.jar -s http://localhost:8080/ -auth admin:$ADMIN_PASSWORD build 0-deploy-all
+        #environment:
+        #ADMIN_PASSWORD: '{{ admin_password }}'
 
   - name: Remove useless packages from the cache
     apt:
