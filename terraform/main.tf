@@ -33,25 +33,32 @@ resource "aws_subnet" "main" {
   map_public_ip_on_launch = true
 }
 
-#resource "aws_security_group" "elb" {
-#  name        = "${var.app}-${var.env}-sg_elb"
-#  description = "Security group for the ELB"
-#  vpc_id      = aws_vpc.main.id
-#
-#  ingress {
-#    from_port   = 80
-#    to_port     = 80
-#    protocol    = "tcp"
-#    cidr_blocks = ["0.0.0.0/0"]
-#   }
-# 
-#   egress {
-#     from_port   = 0
-#     to_port     = 0
-#     protocol    = "-1"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-# }
+resource "aws_security_group" "elb" {
+  name        = "${var.app}-${var.env}-sg_elb"
+  description = "Security group for the ELB"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+   }
+
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+   egress {
+     from_port   = 0
+     to_port     = 0
+     protocol    = "-1"
+     cidr_blocks = ["0.0.0.0/0"]
+   }
+}
 
 resource "aws_security_group" "ec2" {
   name        = "${var.app}-${var.env}-sg_ec2"
@@ -87,20 +94,27 @@ resource "aws_security_group" "ec2" {
   }
 }
 
-#resource "aws_elb" "web" {
-#  name = "${var.app}-${var.env}-elb"
-#
-#  subnets         = [aws_subnet.main.id]
-#  security_groups = [aws_security_group.elb.id]
-#  instances       = [aws_instance.web.id]
-#
-#  listener {
-#    instance_port     = 80
-#    instance_protocol = "http"
-#    lb_port           = 80
-#    lb_protocol       = "http"
-#  }
-#}
+resource "aws_elb" "web" {
+  name = "${var.app}-${var.env}-elb"
+
+  subnets         = [aws_subnet.main.id]
+  security_groups = [aws_security_group.elb.id]
+  instances       = [aws_instance.web.id]
+
+  listener {
+    instance_port     = 80
+    instance_protocol = "http"
+    lb_port           = 80
+    lb_protocol       = "http"
+  }
+
+  listener {
+    instance_port     = 8080
+    instance_protocol = "http"
+    lb_port           = 8080
+    lb_protocol       = "http"
+  }
+}
 
 resource "aws_key_pair" "auth" {
   key_name   = var.key_name

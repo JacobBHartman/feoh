@@ -98,6 +98,10 @@
       name: jenkins
       state: started
 
+  - name: Grab Jenkins admin password
+    command: cat /var/lib/jenkins/secrets/initialAdminPassword
+    register: ADMIN_PASSWORD
+
   - name: Wait for thiry seconds so that Jenkins has properly started
     wait_for:
       timeout: 30
@@ -156,7 +160,7 @@
       state: restarted
 
   - name: Start Jenkins build
-    command: java -jar /usr/local/bin/jenkins-cli.jar -s http://localhost:8080/ build 0-deploy-all
+    command: java -jar /usr/local/bin/jenkins-cli.jar -s http://localhost:8080/ --auth admin:$ADMIN_PASSWORD build 0-deploy-all
 
   - name: Remove useless packages from the cache
     apt:
