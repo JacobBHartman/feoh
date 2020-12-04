@@ -1,6 +1,9 @@
 version: "3.8"
 services:
   reverse-proxy:
+    depends_on:
+      - blog
+    restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile_reverse-proxy
@@ -9,6 +12,8 @@ services:
         published: 80
         protocol: tcp
         mode: host
+    volumes:
+      - wordpress:/var/www/html
 
   app:
     build:
@@ -45,6 +50,8 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
-
+    volumes:
+      - wordpress:/var/www/html
 volumes:
   db_data:
+  wordpress:
