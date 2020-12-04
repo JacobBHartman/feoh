@@ -38,7 +38,7 @@ services:
       - db_blog
     image: wordpress:5.5.3-php7.2-fpm
     expose:
-      - "8000"
+      - "9000"
     restart: unless-stopped
     environment:
       WORDPRESS_DB_HOST: db_blog:3306
