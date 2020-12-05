@@ -1,6 +1,6 @@
 FROM nginx:1.18.0-alpine
 
-COPY reverse-proxy/redirect.conf /etc/nginx/conf.d/default.conf
+RUN rm /etc/nginx/conf.d/default.conf
 COPY reverse-proxy/www.conf /etc/nginx/conf.d/www.conf
 COPY reverse-proxy/deploy.conf /etc/nginx/conf.d/deploy.conf
 COPY reverse-proxy/blog.conf /etc/nginx/conf.d/blog.conf
