@@ -52,6 +52,13 @@ resource "aws_security_group" "elb" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
    egress {
      from_port   = 0
      to_port     = 0
@@ -76,7 +83,7 @@ resource "aws_security_group" "ec2" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    security_groups = [aws_security_group.elb.id]
   }
 
   ingress {
@@ -114,6 +121,14 @@ resource "aws_elb" "web" {
     lb_port           = 8080
     lb_protocol       = "http"
   }
+
+  listener {
+    instance_port      = 80
+    instance_protocol  = "http"
+    lb_port            = 443
+    lb_protocol        = "https"
+    ssl_certificate_id = aws_acm_certificate.main.arn
+  }
 }
 
 resource "aws_key_pair" "auth" {
@@ -150,4 +165,7 @@ resource "aws_instance" "web" {
       "ansible-playbook -i ansible/hosts ansible/playbook_demo.yml",
     ]
   }
+}
+
+resource "aws_acm_certificate" "main" {
 }
