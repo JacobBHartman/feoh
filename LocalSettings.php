@@ -30,7 +30,7 @@ $wgMetaNamespace = "Bovine_biz_wiki";
 $wgScriptPath = "";
 
 ## The protocol and server name to use in fully-qualified URLs
-$wgServer = "http://54.175.41.235:9080";
+$wgServer = "http://wiki.bovine.biz";
 
 ## The URL path to static resources (images, scripts, etc.)
 $wgResourceBasePath = $wgScriptPath;
@@ -112,7 +112,7 @@ $wgUseInstantCommons = false;
 # Periodically send a pingback to https://www.mediawiki.org/ with basic data
 # about this MediaWiki instance. The Wikimedia Foundation shares this data
 # with MediaWiki developers to help guide future development efforts.
-$wgPingback = false;
+$wgPingback = true;
 
 ## If you use ImageMagick (or any other shell command) on a
 ## Linux server, this will need to be set to the name of an
@@ -127,14 +127,14 @@ $wgShellLocale = "C.UTF-8";
 # Site language code, should be one of the list in ./languages/data/Names.php
 $wgLanguageCode = "en";
 
-$wgSecretKey = "1288640891cf51cedc3c9e3896e8d3413999d3963c12e540489d5a095f5b7a88";
+$wgSecretKey = "c8f874c4c96ba19c9f2dc6b2c85ef657bcf00734642c6adc1d0746b5b8be0c3f";
 
 # Changing this will log out all existing sessions.
 $wgAuthenticationTokenVersion = "1";
 
 # Site upgrade key. Must be set to a string (default provided) to turn on the
 # web installer while LocalSettings.php is in place
-$wgUpgradeKey = "636b641fec20c3d6";
+$wgUpgradeKey = "91257eb057c61726";
 
 ## For attaching licensing metadata to pages, and displaying an
 ## appropriate copyright notice / icon. GNU Free Documentation
