@@ -14,6 +14,28 @@ resource "aws_route53_record" "domain" {
   }
 }
 
+#resource "aws_route53_record" "www" {
+#  zone_id = aws_route53_zone.primary.zone_id
+#  name    = "www.bovine.biz"
+#  type    = "CNAME"
+#  alias {
+#    name    = aws_route53_record.domain.name
+#    zone_id = aws_route53_zone.primary.zone_id
+#    evaluate_target_health = true
+#  }
+#}
+
+resource "aws_route53_record" "wiki" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = "wiki.bovine.biz"
+  type    = "A"
+  alias {
+    name    = aws_elb.web.dns_name
+    zone_id = aws_elb.web.zone_id
+    evaluate_target_health = true
+  }
+}
+
 resource "aws_route53_record" "deploy" {
   zone_id = aws_route53_zone.primary.zone_id
   name    = "deploy.bovine.biz"
