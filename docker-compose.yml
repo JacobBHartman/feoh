@@ -14,7 +14,7 @@ services:
         mode: host
     volumes:
       - wordpress:/var/www/html
-
+      - wiki:/var/www/wiki
   app:
     build:
       context: .
