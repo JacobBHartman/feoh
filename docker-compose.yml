@@ -58,8 +58,6 @@ services:
     restart: always
     ports:
       - 9080:80
-    links:
-      - db_wiki
     volumes:
       - wiki:/var/www/html/images
       - ./LocalSettings.php:/var/www/html/LocalSettings.php
