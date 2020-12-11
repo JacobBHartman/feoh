@@ -57,7 +57,7 @@ services:
     image: mediawiki:1.35.0
     restart: always
     ports:
-      - 8080:80
+      - 9080:80
     links:
       - db_wiki
     volumes:
