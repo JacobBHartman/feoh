@@ -30,7 +30,7 @@ $wgMetaNamespace = "Bovine_biz_wiki";
 $wgScriptPath = "";
 
 ## The protocol and server name to use in fully-qualified URLs
-$wgServer = "http://54.175.41.235:9080";
+$wgServer = "http://wiki.bovine.biz";
 
 ## The URL path to static resources (images, scripts, etc.)
 $wgResourceBasePath = $wgScriptPath;
