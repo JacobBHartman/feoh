@@ -29,7 +29,7 @@ div#top {
 
 div#middle {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	height: 80%;
 	min-height: 80%;
 	width: 100%;
@@ -47,6 +47,7 @@ div#middle-left {
 
 div#middle-center {
 	display: flex;
+	flex-direction: column;
 	background-color: green;
 	width: 60%;
 	min-height: 80%;
