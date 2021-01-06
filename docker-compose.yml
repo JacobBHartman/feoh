@@ -21,8 +21,8 @@ services:
       dockerfile: Dockerfile_masters
     expose:
       - "3000"
-#   ports:
-#     - "8001:3000"
+    ports:
+      - "8001:3000"
 #   volumes:
 #     - .:/cadre:cached
 
