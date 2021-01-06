@@ -32,7 +32,7 @@
 
   - name: Install Beatiful Soup for Python
     apt:
-      name: python-bs4
+      name: python3-bs4
 
   - name: Add downloaded Docker GPG key
     apt_key:
