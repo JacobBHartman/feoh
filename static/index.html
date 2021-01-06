@@ -15,7 +15,7 @@
 					<a href="http://blog.bovine.biz">Blog</a> | 
 					Store | 
 					<a href="http://wiki.bovine.biz">Wiki</a> | 
-					<a href="http://ruby.bovine.biz">Ruby</a> | 
+					<a href="http://masters.bovine.biz">Masters</a> | 
 					HQ | 
 					About | 
 					Contact
@@ -23,10 +23,13 @@
 			</div>
 			<div id="middle">
 				<div id="middle-left">
+					<h3>Under Construction</h3>
 					<p>I am leaving this space blank. The reason there are 5 sections colored Google style was for me to easily visualize my flexbox settings. I will put something here and in the other sections when it suits me.</p>
 				</div>
 				<div id="middle-center">
+					<h3>What is the function of this site?</h3>
 					<p>The point of this site is to act as a central point for a self-hosted Wiki, Blog, Store, Demo Applications, links to other sites, for friends, family, business associates, and community. It is not meant to be good-looking as I am not a frontend engineer, I specialize in DevOps tools.</p>
+					<h3>How is this site deployed?</h3>
 					<p>This site is deployed on AWS. To save costs, my Jenkins instance is served on the same EC2 as the containers it deploys. I have one container for each service: a webserver/reverse-proxy, Mediawiki, a Wiki DB, Wordpress and a WP DB. Due to the personal nature of the site, I have made decisions to cut costs where I otherwise wouldn't for a production infrastructure. Upon running "terraform apply", the EC2 begins a startup script that installs Ansible and runs a playbook. The playbook contains all configurations I need to run the infrastructure incl. Docker.</p>
 				</div>
 				<div id="middle-right">
