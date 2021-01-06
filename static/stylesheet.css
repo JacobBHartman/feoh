@@ -33,7 +33,7 @@ div#top {
 	height: 10%;
 	min-height: 10%;
 	width: 100%;
-	background-color: lightyellow;
+	background-color: wheat;
 }
 
 div#middle {
@@ -68,6 +68,7 @@ div#middle-center {
 
 div#middle-right {
 	display: flex;
+	flex-direction: column;
 	background-color: lightpink;
 	width: 20%;
 	height: 100%;
