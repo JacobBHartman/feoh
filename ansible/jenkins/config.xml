@@ -34,6 +34,8 @@ whoami
 git clone https://github.com/JacobBHartman/feoh.git
 cd feoh
 
+python3 issues.py
+
 # spin up containers
 if [ &quot;${BUILD_USING_CACHE}&quot; = &quot;true&quot; ]; then
   docker-compose build
