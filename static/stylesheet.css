@@ -51,6 +51,7 @@ div#middle {
 
 div#middle-left {
 	display: flex;
+	flex-direction: column;
 	background-color: lightblue;
 	width: 20%;
 	height: 100%;
