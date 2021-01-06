@@ -15,10 +15,10 @@ services:
     volumes:
       - wordpress:/var/www/html
       - wiki:/var/www/wiki
-  app:
+  masters:
     build:
       context: .
-      dockerfile: Dockerfile_app
+      dockerfile: Dockerfile_masters
     expose:
       - "3000"
 #   ports:
