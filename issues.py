@@ -25,7 +25,7 @@ def main():
     s = ""
     issues = soup.find_all("a", {"id" : compile("^(issue_).+(_link)")})
     for i, issue in enumerate(issues):
-        s.append(str(i+1) + ". " + issue.text + "\n")
+        s += str(i+1) + ". " + issue.text + "\n"
    
     index_dir = ("static/")
     fin = open(index_dir + "index.html", "rt")
