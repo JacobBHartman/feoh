@@ -60,7 +60,7 @@ services:
       - 9080:80
     volumes:
       - wiki:/var/www/html/images
-      - ./LocalSettings.php:/var/www/html/LocalSettings.php
+      - ./LocalSettings.php:/var/www/html/mw-config/LocalSettings.php
 
 volumes:
   db_data:
