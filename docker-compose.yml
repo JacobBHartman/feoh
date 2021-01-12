@@ -62,6 +62,13 @@ services:
       - wiki:/var/www/html/images
       - ./LocalSettings.php:/var/www/html/mw-config/LocalSettings.php
 
+  farmos:
+    image: farmos/farmos:7.x-1.6
+#    volumes:
+#      - ./sites:/var/www/html/sites
+    ports:
+      - '9876:80'
+
 volumes:
   db_data:
   wordpress:
