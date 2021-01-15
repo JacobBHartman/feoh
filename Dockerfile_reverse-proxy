@@ -6,5 +6,6 @@ COPY reverse-proxy/deploy.conf  /etc/nginx/conf.d/deploy.conf
 COPY reverse-proxy/blog.conf    /etc/nginx/conf.d/blog.conf
 COPY reverse-proxy/wiki.conf    /etc/nginx/conf.d/wiki.conf
 COPY reverse-proxy/masters.conf /etc/nginx/conf.d/masters.conf
+COPY reverse-proxy/farm.conf    /etc/nginx/conf.d/farm.conf
 
 COPY static/ /usr/share/nginx/html/

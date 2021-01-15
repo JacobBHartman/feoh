@@ -68,3 +68,14 @@ resource "aws_route53_record" "masters" {
     evaluate_target_health = true
   }
 }
+
+resource "aws_route53_record" "farm" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = "farm.bovine.biz"
+  type    = "A"
+  alias {
+    name    = aws_elb.web.dns_name
+    zone_id = aws_elb.web.zone_id
+    evaluate_target_health = true
+  }
+}
